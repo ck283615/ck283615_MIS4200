@@ -15,9 +15,11 @@ namespace ck283615_MIS4200.DAL
                 ck283615_MIS4200.Migrations.MISContext.Configuration>("DefaultConnection"));
         }
 
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Operation> Operations { get; set; }
+        public DbSet<PatientDetail> PatientDetails { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
