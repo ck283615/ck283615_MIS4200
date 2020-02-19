@@ -1,4 +1,4 @@
-﻿@model ck283615_MIS4200.Models.Course
+﻿@model ck283615_MIS4200.Models.Operation
 
 @{
     ViewBag.Title = "Create";
@@ -12,22 +12,22 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Course</h4>
+        <h4>Operation</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.operationDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.operationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.operationDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.classStartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.operationDescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.classStartTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.classStartTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.operationDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.operationDescription, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -11,107 +11,107 @@ using ck283615_MIS4200.Models;
 
 namespace ck283615_MIS4200.Controllers
 {
-    public class CoursesController : Controller
+    public class DoctorsController : Controller
     {
         private MIS4200Context db = new MIS4200Context();
 
-        // GET: Courses
+        // GET: Doctors
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(db.Doctors.ToList());
         }
 
-        // GET: Courses/Details/5
+        // GET: Doctors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(doctor);
         }
 
-        // GET: Courses/Create
+        // GET: Doctors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Courses/Create
+        // POST: Doctors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "courseID,description,classStartTime")] Course course)
+        public ActionResult Create([Bind(Include = "doctorID,firstName,lastName,email,phone,doctorSince")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Doctors.Add(doctor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(doctor);
         }
 
-        // GET: Courses/Edit/5
+        // GET: Doctors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(doctor);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Doctors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "courseID,description,classStartTime")] Course course)
+        public ActionResult Edit([Bind(Include = "doctorID,firstName,lastName,email,phone,doctorSince")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(doctor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(doctor);
         }
 
-        // GET: Courses/Delete/5
+        // GET: Doctors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(doctor);
         }
 
-        // POST: Courses/Delete/5
+        // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Doctor doctor = db.Doctors.Find(id);
+            db.Doctors.Remove(doctor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

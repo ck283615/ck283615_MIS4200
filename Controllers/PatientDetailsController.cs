@@ -11,107 +11,116 @@ using ck283615_MIS4200.Models;
 
 namespace ck283615_MIS4200.Controllers
 {
-    public class StudentsController : Controller
+    public class PatientDetailsController : Controller
     {
         private MIS4200Context db = new MIS4200Context();
 
-        // GET: Students
+        // GET: PatientDetails
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            var patientDetails = db.PatientDetails.Include(p => p.Operation).Include(p => p.Patient);
+            return View(patientDetails.ToList());
         }
 
-        // GET: Students/Details/5
+        // GET: PatientDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            PatientDetail patientDetail = db.PatientDetails.Find(id);
+            if (patientDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(patientDetail);
         }
 
-        // GET: Students/Create
+        // GET: PatientDetails/Create
         public ActionResult Create()
         {
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate");
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName");
             return View();
         }
 
-        // POST: Students/Create
+        // POST: PatientDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "studentID,firstName,lastName,email,phone,graduationYear")] Student student)
+        public ActionResult Create([Bind(Include = "patientdetailID,insuranceCompany,amountOwed,patientID,operationID")] PatientDetail patientDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
+                db.PatientDetails.Add(patientDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate", patientDetail.operationID);
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName", patientDetail.patientID);
+            return View(patientDetail);
         }
 
-        // GET: Students/Edit/5
+        // GET: PatientDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            PatientDetail patientDetail = db.PatientDetails.Find(id);
+            if (patientDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate", patientDetail.operationID);
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName", patientDetail.patientID);
+            return View(patientDetail);
         }
 
-        // POST: Students/Edit/5
+        // POST: PatientDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "studentID,firstName,lastName,email,phone,graduationYear")] Student student)
+        public ActionResult Edit([Bind(Include = "patientdetailID,insuranceCompany,amountOwed,patientID,operationID")] PatientDetail patientDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
+                db.Entry(patientDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(student);
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate", patientDetail.operationID);
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName", patientDetail.patientID);
+            return View(patientDetail);
         }
 
-        // GET: Students/Delete/5
+        // GET: PatientDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            PatientDetail patientDetail = db.PatientDetails.Find(id);
+            if (patientDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(patientDetail);
         }
 
-        // POST: Students/Delete/5
+        // POST: PatientDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
+            PatientDetail patientDetail = db.PatientDetails.Find(id);
+            db.PatientDetails.Remove(patientDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -11,107 +11,107 @@ using ck283615_MIS4200.Models;
 
 namespace ck283615_MIS4200.Controllers
 {
-    public class SchedulesController : Controller
+    public class OperationsController : Controller
     {
         private MIS4200Context db = new MIS4200Context();
 
-        // GET: Schedules
+        // GET: Operations
         public ActionResult Index()
         {
-            return View(db.Schedules.ToList());
+            return View(db.Operations.ToList());
         }
 
-        // GET: Schedules/Details/5
+        // GET: Operations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
+            Operation operation = db.Operations.Find(id);
+            if (operation == null)
             {
                 return HttpNotFound();
             }
-            return View(schedule);
+            return View(operation);
         }
 
-        // GET: Schedules/Create
+        // GET: Operations/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Schedules/Create
+        // POST: Operations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "scheduleID,numberOfClasses,courseID,studentID")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "operationID,operationDate,operationDescription")] Operation operation)
         {
             if (ModelState.IsValid)
             {
-                db.Schedules.Add(schedule);
+                db.Operations.Add(operation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(schedule);
+            return View(operation);
         }
 
-        // GET: Schedules/Edit/5
+        // GET: Operations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
+            Operation operation = db.Operations.Find(id);
+            if (operation == null)
             {
                 return HttpNotFound();
             }
-            return View(schedule);
+            return View(operation);
         }
 
-        // POST: Schedules/Edit/5
+        // POST: Operations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "scheduleID,numberOfClasses,courseID,studentID")] Schedule schedule)
+        public ActionResult Edit([Bind(Include = "operationID,operationDate,operationDescription")] Operation operation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(schedule).State = EntityState.Modified;
+                db.Entry(operation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(schedule);
+            return View(operation);
         }
 
-        // GET: Schedules/Delete/5
+        // GET: Operations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
+            Operation operation = db.Operations.Find(id);
+            if (operation == null)
             {
                 return HttpNotFound();
             }
-            return View(schedule);
+            return View(operation);
         }
 
-        // POST: Schedules/Delete/5
+        // POST: Operations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Schedule schedule = db.Schedules.Find(id);
-            db.Schedules.Remove(schedule);
+            Operation operation = db.Operations.Find(id);
+            db.Operations.Remove(operation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

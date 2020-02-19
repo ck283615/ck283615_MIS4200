@@ -1,0 +1,50 @@
+﻿@model ck283615_MIS4200.Models.PatientDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PatientDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Operation.operationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Operation.operationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.insuranceCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.insuranceCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amountOwed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amountOwed)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.patientdetailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

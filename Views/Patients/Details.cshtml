@@ -1,16 +1,23 @@
-﻿@model ck283615_MIS4200.Models.Student
+﻿@model ck283615_MIS4200.Models.Patient
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Student</h4>
+    <h4>Patient</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.firstName)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.firstName)
         </dt>
@@ -44,21 +51,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.graduationYear)
+            @Html.DisplayNameFor(model => model.patientSince)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.graduationYear)
+            @Html.DisplayFor(model => model.patientSince)
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.patientID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
