@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<ck283615_MIS4200.Models.Doctor>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Doctors";
 }
 
-<h2>Index</h2>
+<h2>Doctors</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-hover table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.firstName)

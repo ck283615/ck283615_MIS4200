@@ -11,13 +11,13 @@ namespace ck283615_MIS4200.Models
     {
         public int doctorID { get; set; }
         
-        [Display (Name="First Name")] 
+        [Display (Name="Doctor First Name")] 
         [Required (ErrorMessage="Doctor first name is required.")] 
         [StringLength(20)] 
 
         public string firstName { get; set; }
 
-        [Display(Name = "Last Name")]
+        [Display(Name = "Doctor Last Name")]
         [Required(ErrorMessage = "Doctor last name is required.")]
         [StringLength(20)]
         public string lastName { get; set; }
