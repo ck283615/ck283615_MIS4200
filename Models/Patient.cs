@@ -13,6 +13,9 @@ namespace ck283615_MIS4200.Models
         [Key]
         public int patientID { get; set; }
 
+        public string fullName { get { return lastName + ", " + firstName; } }
+
+
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "Patient first name is required.")]
         [StringLength(20)]

@@ -10,6 +10,8 @@ namespace ck283615_MIS4200.Models
     public class Doctor
     {
         public int doctorID { get; set; }
+
+        public string fullName { get { return lastName + ", " + firstName; } }
         
         [Display (Name="Doctor First Name")] 
         [Required (ErrorMessage="Doctor first name is required.")] 

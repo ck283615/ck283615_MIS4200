@@ -40,8 +40,10 @@ namespace ck283615_MIS4200.Controllers
         // GET: PatientDetails/Create
         public ActionResult Create()
         {
-            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate");
-            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName");
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDescription");
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "fullName");
+            
+            
             return View();
         }
 
@@ -59,8 +61,8 @@ namespace ck283615_MIS4200.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate", patientDetail.operationID);
-            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName", patientDetail.patientID);
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDescription");
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "fullName");
             return View(patientDetail);
         }
 
@@ -76,8 +78,8 @@ namespace ck283615_MIS4200.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate", patientDetail.operationID);
-            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName", patientDetail.patientID);
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDescription");
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "fullName");
             return View(patientDetail);
         }
 
@@ -94,8 +96,8 @@ namespace ck283615_MIS4200.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDate", patientDetail.operationID);
-            ViewBag.patientID = new SelectList(db.Patients, "patientID", "firstName", patientDetail.patientID);
+            ViewBag.operationID = new SelectList(db.Operations, "operationID", "operationDescription");
+            ViewBag.patientID = new SelectList(db.Patients, "patientID", "fullName");
             return View(patientDetail);
         }
 
